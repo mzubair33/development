@@ -1,0 +1,70 @@
+<div class="container mt-5">
+    <h1 class="text-center">User Registration</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input class="form-control" formControlName="firstName">
+                    <div *ngIf="formGroup.get('firstName')?.invalid && (formGroup.get('firstName')?.touched)"
+                        class="text-danger">
+                        First Name is required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input class="form-control" formControlName="lastName">
+                    <div *ngIf="formGroup.get('lastName')?.invalid && (formGroup.get('lastName')?.touched)"
+                        class="text-danger">
+                        Last Name is required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-control" formControlName="email">
+                    <div *ngIf="formGroup.get('email')?.invalid && (formGroup.get('email')?.touched)"
+                        class="text-danger">
+                        <div *ngIf="formGroup.get('email')?.errors?.['required']">Email is required.</div>
+                        <div *ngIf="formGroup.get('email')?.errors?.['email']">Email must be a valid email address.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" formControlName="password">
+                    <div *ngIf="formGroup.get('password')?.invalid && (formGroup.get('password')?.touched)"
+                        class="text-danger">
+                        <div *ngIf="formGroup.get('password')?.errors?.['required']">Password is required.</div>
+                        <div *ngIf="formGroup.get('password')?.errors?.['minlength']">Password must be at least
+                            8 characters long.</div>
+                        <div
+                            *ngIf="formGroup.get('password')?.errors?.['pattern'] && !formGroup.get('password')?.errors?.['minlength']">
+                            Password must be at least
+                            8 characters long. Password must include at least one uppercase letter, one number, and one
+                            special character.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" formControlName="confirmPassword">
+                    <div *ngIf="formGroup.get('confirmPassword')?.invalid && (formGroup.get('confirmPassword')?.touched)"
+                        class="text-danger">
+                        Confirm Password is required.
+                    </div>
+                    <div *ngIf="formGroup.get('confirmPassword')?.errors?.['passwordMismatch']" class="text-danger">
+                        Password Mismatch.
+                    </div>
+
+                </div>
+                <button type="submit" class="btn btn-primary mt-3 w-100" [disabled]="formGroup.invalid">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="row row justify-content-center">
+        <div class="col-md-6">
+
+            <button type="submit" class="w-100 btn btn-success mt-3 " (click)="backToHome()">Back to Home</button>
+        </div>
+    </div>
+</div>

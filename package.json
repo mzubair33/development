@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "electron": "ng build --prod && electron .",
+    "build-electron": "electron-builder"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +21,9 @@
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
     "bootstrap": "^5.3.3",
+    "electron-builder": "^25.1.8",
+    "electron-is-dev": "^3.0.1",
+    "electron-updater": "^6.3.9",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -27,6 +32,7 @@
     "@angular-devkit/build-angular": "~13.0.3",
     "@angular/cli": "~13.0.3",
     "@angular/compiler-cli": "~13.0.0",
+    "@types/electron": "^1.6.12",
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "jasmine-core": "~3.10.0",
@@ -36,5 +42,25 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.4.3"
+  },
+  "build": {
+    "appId": "com.yourcompany.developertest",
+    "productName": "DeveloperTest",
+    "publish": {
+      "provider": "github",
+      "owner": "https://github.com/mzubair33",
+      "repo": "https://github.com/mzubair33/development"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "icon": "build/icon.icns",
+      "category": "public.app-category.utilities"
+    },
+    "dmg": {
+      "icon": "build/icon.icns"
+    }
   }
 }
